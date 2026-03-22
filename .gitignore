@@ -3,6 +3,7 @@
 
 # Build artifacts
 bin/
+/ais
 *.exe
 *.test
 
