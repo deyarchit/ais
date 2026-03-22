@@ -28,7 +28,13 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Responses are visually rendered — headers, bold, code blocks — not raw markdown strings
   5. Source URLs from Google Search grounding appear after each response body
   6. `make build` produces `./bin/ais`
-**Plans**: TBD
+**Plans**: 4 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Foundation: dependencies, Gemini client with grounding, render helpers, Makefile fix
+- [ ] 01-02-PLAN.md — One-shot mode: `-q` flag, spinner, glamour render, source citations
+- [ ] 01-03-PLAN.md — Chat REPL: interactive loop, multi-turn history, `ais> ` prompt
+- [ ] 01-04-PLAN.md — End-to-end verification: build checks + live API human checkpoint
 
 ### Phase 2: Production Ready
 **Goal**: The tool handles failure gracefully and meets production code quality standards
@@ -48,5 +54,5 @@ Phases execute in numeric order: 1 → 2
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Working Tool | 0/? | Not started | - |
+| 1. Working Tool | 0/4 | Not started | - |
 | 2. Production Ready | 0/? | Not started | - |
