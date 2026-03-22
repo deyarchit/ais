@@ -11,6 +11,7 @@ import (
 
 	"ais/internal/gemini"
 	"ais/internal/render"
+	"ais/internal/repl"
 )
 
 func main() {
@@ -25,8 +26,11 @@ func main() {
 		return
 	}
 
-	// Chat REPL mode — implemented in plan 01-03
-	fmt.Println("chat mode: placeholder")
+	// Chat REPL mode (MODE-02, D-11)
+	if err := repl.Run(context.Background()); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
+	}
 }
 
 // runOneShot executes a single query and exits. Creates a fresh Client so no
