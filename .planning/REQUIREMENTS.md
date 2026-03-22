@@ -7,19 +7,19 @@
 
 ### Query Modes
 
-- [ ] **MODE-01**: Running `ais -q "query"` returns an answer and exits (one-shot mode)
+- [x] **MODE-01**: Running `ais -q "query"` returns an answer and exits (one-shot mode)
 - [ ] **MODE-02**: Running `ais` with no args opens an interactive REPL (chat mode)
 - [ ] **MODE-03**: In chat mode, the full conversation history is passed to Gemini on each turn (multi-turn context)
 
 ### Search Grounding
 
 - [x] **SRCH-01**: Google Search grounding is enabled on every query (no toggle needed)
-- [ ] **SRCH-02**: Grounding sources/URLs are listed after each response
+- [x] **SRCH-02**: Grounding sources/URLs are listed after each response
 
 ### Output
 
-- [ ] **OUT-01**: Responses are rendered as markdown in the terminal (via glamour)
-- [ ] **OUT-02**: Source citations appear after the rendered response body
+- [x] **OUT-01**: Responses are rendered as markdown in the terminal (via glamour)
+- [x] **OUT-02**: Source citations appear after the rendered response body
 
 ### Configuration
 
@@ -66,13 +66,13 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| MODE-01 | Phase 1 | Pending |
+| MODE-01 | Phase 1 | Complete |
 | MODE-02 | Phase 1 | Pending |
 | MODE-03 | Phase 1 | Pending |
 | SRCH-01 | Phase 1 | Complete |
-| SRCH-02 | Phase 1 | Pending |
-| OUT-01 | Phase 1 | Pending |
-| OUT-02 | Phase 1 | Pending |
+| SRCH-02 | Phase 1 | Complete |
+| OUT-01 | Phase 1 | Complete |
+| OUT-02 | Phase 1 | Complete |
 | CFG-01 | Phase 1 | Complete |
 | CFG-02 | Phase 2 | Pending |
 | ERR-01 | Phase 2 | Pending |

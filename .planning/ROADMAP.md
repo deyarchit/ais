@@ -32,7 +32,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 01-01-PLAN.md — Foundation: dependencies, Gemini client with grounding, render helpers, Makefile fix
-- [ ] 01-02-PLAN.md — One-shot mode: `-q` flag, spinner, glamour render, source citations
+- [x] 01-02-PLAN.md — One-shot mode: `-q` flag, spinner, glamour render, source citations
 - [ ] 01-03-PLAN.md — Chat REPL: interactive loop, multi-turn history, `ais> ` prompt
 - [ ] 01-04-PLAN.md — End-to-end verification: build checks + live API human checkpoint
 
