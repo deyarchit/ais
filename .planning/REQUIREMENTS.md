@@ -13,7 +13,7 @@
 
 ### Search Grounding
 
-- [ ] **SRCH-01**: Google Search grounding is enabled on every query (no toggle needed)
+- [x] **SRCH-01**: Google Search grounding is enabled on every query (no toggle needed)
 - [ ] **SRCH-02**: Grounding sources/URLs are listed after each response
 
 ### Output
@@ -23,7 +23,7 @@
 
 ### Configuration
 
-- [ ] **CFG-01**: GEMINI_API_KEY environment variable is used for authentication
+- [x] **CFG-01**: GEMINI_API_KEY environment variable is used for authentication
 - [ ] **CFG-02**: Missing API key produces a clear, actionable error message
 
 ### Error Handling
@@ -34,7 +34,7 @@
 
 ### Tooling
 
-- [ ] **TOOL-01**: `make build` produces `./bin/ais` binary
+- [x] **TOOL-01**: `make build` produces `./bin/ais` binary
 - [ ] **TOOL-02**: Code passes existing golangci-lint rules
 
 ## v2 Requirements
@@ -69,17 +69,17 @@
 | MODE-01 | Phase 1 | Pending |
 | MODE-02 | Phase 1 | Pending |
 | MODE-03 | Phase 1 | Pending |
-| SRCH-01 | Phase 1 | Pending |
+| SRCH-01 | Phase 1 | Complete |
 | SRCH-02 | Phase 1 | Pending |
 | OUT-01 | Phase 1 | Pending |
 | OUT-02 | Phase 1 | Pending |
-| CFG-01 | Phase 1 | Pending |
-| CFG-02 | Phase 1 | Pending |
-| ERR-01 | Phase 1 | Pending |
-| ERR-02 | Phase 1 | Pending |
-| ERR-03 | Phase 1 | Pending |
-| TOOL-01 | Phase 1 | Pending |
-| TOOL-02 | Phase 1 | Pending |
+| CFG-01 | Phase 1 | Complete |
+| CFG-02 | Phase 2 | Pending |
+| ERR-01 | Phase 2 | Pending |
+| ERR-02 | Phase 2 | Pending |
+| ERR-03 | Phase 2 | Pending |
+| TOOL-01 | Phase 1 | Complete |
+| TOOL-02 | Phase 2 | Pending |
 
 **Coverage:**
 - v1 requirements: 14 total
@@ -88,4 +88,4 @@
 
 ---
 *Requirements defined: 2026-03-22*
-*Last updated: 2026-03-22 after initial definition*
+*Last updated: 2026-03-22 after roadmap creation (phase assignments finalized)*
