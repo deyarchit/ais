@@ -1,10 +1,10 @@
 ## build-go: compile the Go binary (requires build-web first)
 build:
-	go build -o ./bin/server ./cmd/server
+	go build -o ./bin/ais ./cmd/ais
 
 # ── Development ────────────────────────────────────────────────────────────────
 dev:
-	go run ./cmd/server
+	go run ./cmd/ais
 
 ## Tidy modules
 tidy:
