@@ -37,7 +37,7 @@ func NewClient(ctx context.Context) (*Client, error) {
 		},
 	}
 
-	chat, err := client.Chats.Create(ctx, "gemini-2.0-flash", config, nil)
+	chat, err := client.Chats.Create(ctx, "gemini-2.5-flash", config, nil)
 	if err != nil {
 		return nil, fmt.Errorf("create chat session: %w", err)
 	}
