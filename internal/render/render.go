@@ -2,6 +2,7 @@ package render
 
 import (
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/charmbracelet/glamour"
@@ -16,15 +17,15 @@ func Markdown(text string) {
 		glamour.WithWordWrap(120),
 	)
 	if err != nil {
-		fmt.Println(text)
+		fmt.Fprintln(os.Stdout, text)
 		return
 	}
 	out, err := r.Render(text)
 	if err != nil {
-		fmt.Println(text)
+		fmt.Fprintln(os.Stdout, text)
 		return
 	}
-	fmt.Print(out)
+	fmt.Fprint(os.Stdout, out)
 }
 
 // Sources prints the source citation block after a response.
@@ -32,13 +33,13 @@ func Markdown(text string) {
 // Per D-06: if urls is empty, prints "Sources: none".
 // Per D-07: no horizontal rule separator.
 func Sources(urls []string) {
-	fmt.Println()
+	fmt.Fprintln(os.Stdout)
 	if len(urls) == 0 {
-		fmt.Println("Sources: none")
+		fmt.Fprintln(os.Stdout, "Sources: none")
 		return
 	}
-	fmt.Println("Sources:")
+	fmt.Fprintln(os.Stdout, "Sources:")
 	for i, u := range urls {
-		fmt.Printf("  %d. %s\n", i+1, strings.TrimSpace(u))
+		fmt.Fprintf(os.Stdout, "  %d. %s\n", i+1, strings.TrimSpace(u))
 	}
 }
