@@ -54,6 +54,10 @@ All plans: 2/2 complete
 
 ## Accumulated Context
 
+### Roadmap Evolution
+
+- Phase 3 added: Add additional flags to control various params for gemini api
+
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
