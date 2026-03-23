@@ -14,10 +14,19 @@ type Client struct {
 	config *genai.GenerateContentConfig
 }
 
+// ClientConfig holds tunable generation parameters supplied by the caller.
+// Temperature is the sampling temperature in [0.0, 2.0].
+// ThinkingBudget is the reasoning token budget; -1 means dynamic (auto), 0 disables thinking.
+// Values are pre-validated by the caller (cmd/ais/main.go).
+type ClientConfig struct {
+	Temperature    float32
+	ThinkingBudget int32
+}
+
 // NewClient creates a new Client using GEMINI_API_KEY from environment.
 // It configures the model with Google Search grounding enabled (no toggle).
 // Returns an error if GEMINI_API_KEY is not set.
-func NewClient(ctx context.Context) (*Client, error) {
+func NewClient(ctx context.Context, cfg ClientConfig) (*Client, error) {
 	apiKey := os.Getenv("GEMINI_API_KEY")
 	if apiKey == "" {
 		return nil, fmt.Errorf("GEMINI_API_KEY is not set")
@@ -31,10 +40,20 @@ func NewClient(ctx context.Context) (*Client, error) {
 	}
 
 	// Always-on Google Search grounding (D-12, SRCH-01)
+	temp := cfg.Temperature
 	config := &genai.GenerateContentConfig{
 		Tools: []*genai.Tool{
 			{GoogleSearch: &genai.GoogleSearch{}},
 		},
+		Temperature: &temp,
+	}
+
+	// ThinkingBudget: -1 = auto (omit ThinkingConfig), anything else = explicit budget
+	if cfg.ThinkingBudget != -1 {
+		budget := cfg.ThinkingBudget
+		config.ThinkingConfig = &genai.ThinkingConfig{
+			ThinkingBudget: &budget,
+		}
 	}
 
 	chat, err := client.Chats.Create(ctx, "gemini-2.5-flash", config, nil)
