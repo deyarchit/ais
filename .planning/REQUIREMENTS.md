@@ -25,6 +25,8 @@
 
 - [x] **CFG-01**: GEMINI_API_KEY environment variable is used for authentication
 - [x] **CFG-02**: Missing API key produces a clear, actionable error message
+- [x] **CFG-03**: `--temperature` flag controls sampling temperature in [0.0, 2.0], default 0.7, applies to both one-shot and REPL modes
+- [x] **CFG-04**: `--thinking-budget` flag controls reasoning token budget via presets (none/low/medium/high/auto), default auto, applies to both modes
 
 ### Error Handling
 
@@ -75,6 +77,8 @@
 | OUT-02 | Phase 1 | Complete |
 | CFG-01 | Phase 1 | Complete |
 | CFG-02 | Phase 2 | Complete |
+| CFG-03 | Phase 3 | Complete |
+| CFG-04 | Phase 3 | Complete |
 | ERR-01 | Phase 2 | Complete |
 | ERR-02 | Phase 2 | Complete |
 | ERR-03 | Phase 2 | Complete |
@@ -82,10 +86,10 @@
 | TOOL-02 | Phase 2 | Pending |
 
 **Coverage:**
-- v1 requirements: 14 total
-- Mapped to phases: 14
+- v1 requirements: 16 total
+- Mapped to phases: 16
 - Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-03-22*
-*Last updated: 2026-03-22 after roadmap creation (phase assignments finalized)*
+*Last updated: 2026-03-23 after Phase 3 — added CFG-03, CFG-04*
