@@ -60,3 +60,13 @@ Phases execute in numeric order: 1 → 2
 |-------|----------------|--------|-----------|
 | 1. Working Tool | 4/4 | Complete   | 2026-03-23 |
 | 2. Production Ready | 2/2 | Complete   | 2026-03-23 |
+
+### Phase 3: Add additional flags to control various params for gemini api
+
+**Goal:** Users can tune temperature and thinking budget at invocation time via `--temperature` and `--thinking-budget` flags, applied to both one-shot and REPL modes
+**Requirements**: CFG-03, CFG-04
+**Depends on:** Phase 2
+**Plans:** 1 plan
+
+Plans:
+- [ ] 03-01-PLAN.md — Add --temperature and --thinking-budget flags: gemini.ClientConfig, validation, threading through main.go and repl.go
