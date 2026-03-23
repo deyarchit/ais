@@ -69,4 +69,4 @@ Phases execute in numeric order: 1 → 2
 **Plans:** 1 plan
 
 Plans:
-- [ ] 03-01-PLAN.md — Add --temperature and --thinking-budget flags: gemini.ClientConfig, validation, threading through main.go and repl.go
+- [x] 03-01-PLAN.md — Add --temperature and --thinking-budget flags: gemini.ClientConfig, validation, threading through main.go and repl.go

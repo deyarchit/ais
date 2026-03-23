@@ -2,13 +2,14 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: complete
-stopped_at: "Completed Phase 2 — all plans done, make lint passes, UAT passed"
-last_updated: "2026-03-23T00:00:00.000Z"
+status: unknown
+stopped_at: Completed 03-01-PLAN.md (temperature and thinking-budget flags)
+last_updated: "2026-03-23T15:57:34.915Z"
+last_activity: 2026-03-23
 progress:
-  total_phases: 2
+  total_phases: 3
   completed_phases: 2
-  total_plans: 6
+  total_plans: 7
   completed_plans: 6
 ---
 
@@ -19,12 +20,12 @@ progress:
 See: .planning/PROJECT.md (updated 2026-03-22)
 
 **Core value:** Every query returns a grounded, source-cited answer — either as a quick one-liner or a full conversation — without leaving the terminal.
-**Current focus:** Milestone complete — all phases done
+**Current focus:** Phase 03 — add-additional-flags-to-control-various-params-for-gemini-api
 
 ## Current Position
 
-Phase: 02 (production-ready) — COMPLETE
-All plans: 2/2 complete
+Phase: 03 (add-additional-flags-to-control-various-params-for-gemini-api) — EXECUTING
+Plan: 1 of 1
 
 ## Performance Metrics
 
@@ -51,6 +52,7 @@ All plans: 2/2 complete
 | Phase 01-working-tool P03 | 2 | 2 tasks | 2 files |
 | Phase 01-working-tool P04 | 525610min | 2 tasks | 2 files |
 | Phase 02-production-ready P01 | 4 | 2 tasks | 3 files |
+| Phase 03-add-additional-flags-to-control-various-params-for-gemini-api P01 | 2 | 2 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -77,6 +79,9 @@ Recent decisions affecting current work:
 - [Phase 02-production-ready]: Duplicate classifyAPIError in both main.go and repl.go rather than change Run() signature — avoids breaking caller interface
 - [Phase 02-production-ready]: Substring matching on Gemini SDK error message strings for error classification — SDK does not expose typed sentinel errors
 - [Quick 260323-qcc]: chzyer/readline used for REPL input; no HistoryFile configured — session-only history to avoid leaking queries to disk
+- [Phase 03]: ThinkingBudget -1 as sentinel for auto mode avoids nil pointer gymnastics in ClientConfig (int32 value type)
+- [Phase 03]: Validation in main.go before cfg construction: caller validates, gemini package trusts config unconditionally
+- [Phase 03]: auto thinking-budget preset maps to -1 sentinel so ThinkingConfig is omitted, enabling SDK dynamic thinking
 
 ### Pending Todos
 
@@ -95,7 +100,7 @@ None yet.
 
 ## Session Continuity
 
-Last activity: 2026-03-23 - Completed quick task 260323-qcc: CLI readline support (backspace/cursor/history)
-Last session: 2026-03-23T11:30:00.000Z
-Stopped at: Completed quick task 260323-qcc (readline REPL input)
+Last activity: 2026-03-23
+Last session: 2026-03-23T15:57:34.913Z
+Stopped at: Completed 03-01-PLAN.md (temperature and thinking-budget flags)
 Resume file: None
