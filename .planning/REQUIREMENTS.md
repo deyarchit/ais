@@ -37,7 +37,7 @@
 ### Tooling
 
 - [x] **TOOL-01**: `make build` produces `./bin/ais` binary
-- [ ] **TOOL-02**: Code passes existing golangci-lint rules
+- [x] **TOOL-02**: Code passes existing golangci-lint rules
 
 ## v2 Requirements
 
@@ -83,7 +83,7 @@
 | ERR-02 | Phase 2 | Complete |
 | ERR-03 | Phase 2 | Complete |
 | TOOL-01 | Phase 1 | Complete |
-| TOOL-02 | Phase 2 | Pending |
+| TOOL-02 | Phase 2 | Complete |
 
 **Coverage:**
 - v1 requirements: 16 total

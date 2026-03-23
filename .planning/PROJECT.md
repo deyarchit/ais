@@ -12,18 +12,19 @@ Every query returns a grounded, source-cited answer — either as a quick one-li
 
 ### Validated
 
-(None yet — ship to validate)
+- [x] One-shot mode: `ais -q "query"` returns answer and exits — Validated in Phase 1
+- [x] Interactive chat mode: `ais` (no args) opens a REPL with full multi-turn conversation context — Validated in Phase 1
+- [x] Google Search grounding always enabled on every query — Validated in Phase 1
+- [x] Responses rendered as markdown in the terminal (via glamour) — Validated in Phase 1
+- [x] Grounding sources/URLs listed after each response — Validated in Phase 1
+- [x] GEMINI_API_KEY env var used for authentication — Validated in Phase 1
+- [x] Graceful error handling: missing API key, network failure, API errors — Validated in Phase 2
+- [x] `--temperature` flag for sampling temperature [0.0, 2.0] — Validated in Phase 3
+- [x] `--thinking-budget` flag for reasoning token budget (none/low/medium/high/auto) — Validated in Phase 3
 
 ### Active
 
-- [ ] One-shot mode: `ais -q "query"` returns answer and exits
-- [ ] Interactive chat mode: `ais` (no args) opens a REPL with full multi-turn conversation context
-- [ ] Google Search grounding always enabled on every query
-- [ ] Responses rendered as markdown in the terminal (e.g., via glamour)
-- [ ] Grounding sources/URLs listed after each response
-- [ ] GEMINI_API_KEY env var used for authentication
 - [ ] Streaming output — response streams to terminal as it arrives
-- [ ] Graceful error handling: missing API key, network failure, API errors
 
 ### Out of Scope
 
@@ -75,4 +76,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-03-22 after initialization*
+*Last updated: 2026-03-23 after Phase 3 complete — temperature and thinking-budget flags shipped*
