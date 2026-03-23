@@ -1,7 +1,6 @@
 package repl
 
 import (
-	"bufio"
 	"context"
 	"errors"
 	"fmt"
@@ -11,6 +10,7 @@ import (
 	"time"
 
 	"github.com/briandowns/spinner"
+	"github.com/chzyer/readline"
 
 	"ais/internal/gemini"
 	"ais/internal/render"
@@ -42,19 +42,30 @@ func Run(ctx context.Context, showRefs bool) error {
 		return err
 	}
 
-	scanner := bufio.NewScanner(os.Stdin)
 	const prompt = "ais> " // D-01: branded prompt
 
-	for {
-		_, _ = fmt.Fprint(os.Stdout, prompt)
+	rl, err := readline.New(prompt)
+	if err != nil {
+		return fmt.Errorf("readline init: %w", err)
+	}
+	defer rl.Close()
 
-		if !scanner.Scan() {
-			// Ctrl+D (EOF) — clean exit (D-02)
+	for {
+		line, err := rl.Readline()
+		if errors.Is(err, readline.ErrInterrupt) {
+			// Ctrl+C — discard current input, re-prompt
+			continue
+		}
+		if errors.Is(err, io.EOF) {
+			// Ctrl+D — clean exit (D-02)
 			_, _ = fmt.Fprintln(os.Stdout)
 			break
 		}
+		if err != nil {
+			return fmt.Errorf("reading input: %w", err)
+		}
 
-		input := strings.TrimSpace(scanner.Text())
+		input := strings.TrimSpace(line)
 		if input == "" {
 			// Whitespace-only input is treated as empty — re-prompt without API call (D-11)
 			continue
@@ -82,8 +93,5 @@ func Run(ctx context.Context, showRefs bool) error {
 		}
 	}
 
-	if err := scanner.Err(); err != nil && !errors.Is(err, io.EOF) {
-		return fmt.Errorf("reading input: %w", err)
-	}
 	return nil
 }
