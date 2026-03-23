@@ -24,13 +24,13 @@
 ### Configuration
 
 - [x] **CFG-01**: GEMINI_API_KEY environment variable is used for authentication
-- [ ] **CFG-02**: Missing API key produces a clear, actionable error message
+- [x] **CFG-02**: Missing API key produces a clear, actionable error message
 
 ### Error Handling
 
-- [ ] **ERR-01**: Missing API key error tells user exactly what to set
-- [ ] **ERR-02**: Network/API errors show the failure reason and suggest next steps
-- [ ] **ERR-03**: Unknown flags or bad input show usage help
+- [x] **ERR-01**: Missing API key error tells user exactly what to set
+- [x] **ERR-02**: Network/API errors show the failure reason and suggest next steps
+- [x] **ERR-03**: Unknown flags or bad input show usage help
 
 ### Tooling
 
@@ -74,10 +74,10 @@
 | OUT-01 | Phase 1 | Complete |
 | OUT-02 | Phase 1 | Complete |
 | CFG-01 | Phase 1 | Complete |
-| CFG-02 | Phase 2 | Pending |
-| ERR-01 | Phase 2 | Pending |
-| ERR-02 | Phase 2 | Pending |
-| ERR-03 | Phase 2 | Pending |
+| CFG-02 | Phase 2 | Complete |
+| ERR-01 | Phase 2 | Complete |
+| ERR-02 | Phase 2 | Complete |
+| ERR-03 | Phase 2 | Complete |
 | TOOL-01 | Phase 1 | Complete |
 | TOOL-02 | Phase 2 | Pending |
 

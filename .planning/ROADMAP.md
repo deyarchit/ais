@@ -48,7 +48,7 @@ Plans:
 **Plans**: 2 plans
 
 Plans:
-- [ ] 02-01-PLAN.md — Error handling: missing key message, API error classification, empty query guard
+- [x] 02-01-PLAN.md — Error handling: missing key message, API error classification, empty query guard
 - [ ] 02-02-PLAN.md — Lint compliance: replace fmt.Print* with fmt.Fprint*, make lint zero violations
 
 ## Progress
