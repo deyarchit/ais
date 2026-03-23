@@ -5,6 +5,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/briandowns/spinner"
@@ -19,6 +20,11 @@ func main() {
 	flag.Parse()
 
 	if *query != "" {
+		if strings.TrimSpace(*query) == "" {
+			fmt.Fprintln(os.Stderr, "error: query cannot be empty")
+			flag.Usage()
+			os.Exit(1)
+		}
 		if err := runOneShot(context.Background(), *query); err != nil {
 			fmt.Fprintf(os.Stderr, "error: %v\n", err)
 			os.Exit(1)
@@ -30,6 +36,23 @@ func main() {
 	if err := repl.Run(context.Background()); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
+	}
+}
+
+// classifyAPIError wraps an SDK error with a human-readable suggestion based on
+// the error category. Substring matching is used because the Gemini SDK does not
+// expose typed sentinel errors (per D-04).
+func classifyAPIError(err error) error {
+	msg := err.Error()
+	switch {
+	case strings.Contains(msg, "403") || strings.Contains(msg, "API key not valid"):
+		return fmt.Errorf("%w — verify your API key is valid and has not expired", err)
+	case strings.Contains(msg, "429") || strings.Contains(msg, "Resource exhausted"):
+		return fmt.Errorf("%w — you have exceeded your API quota — wait before retrying", err)
+	case strings.Contains(msg, "connection refused") || strings.Contains(msg, "deadline exceeded") || strings.Contains(msg, "no such host"):
+		return fmt.Errorf("%w — check your internet connection", err)
+	default:
+		return err
 	}
 }
 
@@ -49,7 +72,7 @@ func runOneShot(ctx context.Context, query string) error {
 	resp, err := client.Ask(ctx, query)
 	s.Stop()
 	if err != nil {
-		return fmt.Errorf("query failed: %w", err)
+		return fmt.Errorf("query failed: %w", classifyAPIError(err))
 	}
 
 	// Render markdown response (OUT-01, D-13)

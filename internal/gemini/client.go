@@ -20,7 +20,7 @@ type Client struct {
 func NewClient(ctx context.Context) (*Client, error) {
 	apiKey := os.Getenv("GEMINI_API_KEY")
 	if apiKey == "" {
-		return nil, fmt.Errorf("GEMINI_API_KEY environment variable is not set")
+		return nil, fmt.Errorf("GEMINI_API_KEY is not set")
 	}
 
 	client, err := genai.NewClient(ctx, &genai.ClientConfig{
