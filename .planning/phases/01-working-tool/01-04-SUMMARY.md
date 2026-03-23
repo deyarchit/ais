@@ -49,19 +49,19 @@ requirements-completed:
 
 # Metrics
 duration: 5min
-completed: 2026-03-22
+completed: 2026-03-23
 ---
 
 # Phase 01 Plan 04: End-to-End Verification Summary
 
-**`./bin/ais` built clean (27.9 MB) with all static checks passing — one-shot and REPL modes structurally verified; live API test awaits user confirmation**
+**`./bin/ais` built clean (27.9 MB) with all static checks passing — all 5 live API tests approved by user; Phase 1 fully complete**
 
 ## Performance
 
 - **Duration:** ~5 min
 - **Started:** 2026-03-22T17:05:00Z
 - **Completed:** 2026-03-22T17:10:00Z
-- **Tasks:** 1 automated + 1 checkpoint (auto-approved)
+- **Tasks:** 1 automated + 1 checkpoint (human-verified, all 5 tests approved)
 - **Files modified:** 2
 
 ## Accomplishments
@@ -82,6 +82,7 @@ completed: 2026-03-22
 Each task was committed atomically:
 
 1. **Task 1: Automated build and static verification** - `f39a401` (chore)
+2. **Task 2: Live API verification — both modes end-to-end** - human-approved (all 5 tests passed)
 
 **Plan metadata:** _(final docs commit follows)_
 
@@ -116,42 +117,22 @@ Each task was committed atomically:
 
 None — all automated checks passed on first run.
 
-## User Setup Required
+## Live API Verification Results
 
-**Live API verification is still required.** With `GEMINI_API_KEY` set in your shell, run these five tests from the project root:
+**All 5 tests approved by user on 2026-03-23.**
 
-**Test 1 — One-shot mode:**
-```
-./bin/ais -q "what is the Go programming language?"
-```
-Expected: spinner, glamour-rendered markdown response, numbered Sources: block, clean exit.
-
-**Test 2 — Chat REPL basics:**
-```
-./bin/ais
-```
-Expected: `ais> ` prompt immediately (no welcome), type question, get spinner + rendered response + sources, prompt reappears.
-
-**Test 3 — Multi-turn context:**
-In the same REPL session — first: `my favorite color is ultraviolet` / second: `what did I just tell you my favorite color is?`
-Expected: second response references "ultraviolet".
-
-**Test 4 — Chat exit:**
-Press Ctrl+D → shell prompt returns, no error. Start again → Ctrl+C → terminates, no stack trace.
-
-**Test 5 — Missing API key error:**
-```
-GEMINI_API_KEY= ./bin/ais -q "hello"
-```
-Expected: error message mentioning `GEMINI_API_KEY`.
+- Test 1 — One-shot mode (`ais -q "what is the Go programming language?"`): PASSED — spinner, glamour-rendered markdown, numbered Sources block, clean exit
+- Test 2 — Chat REPL basics (`ais`): PASSED — `ais> ` prompt immediately, no welcome message, rendered response + sources per turn
+- Test 3 — Multi-turn context: PASSED — second turn referenced "ultraviolet" confirming full conversation history preserved
+- Test 4 — Chat exit: PASSED — Ctrl+D exits cleanly, Ctrl+C terminates without stack trace
+- Test 5 — Missing API key error: PASSED — error message mentions `GEMINI_API_KEY`
 
 ## Next Phase Readiness
 
-- Phase 1 automated build verification: COMPLETE
-- Binary is ready for live user testing at `./bin/ais`
-- Once user confirms all 5 live tests pass, Phase 1 is fully complete
-- Phase 2 can proceed after live confirmation (polish: error messages, streaming, config)
+- Phase 1: FULLY COMPLETE (automated checks + human live API verification)
+- Binary confirmed working end-to-end at `./bin/ais`
+- Phase 2 can proceed (polish: error messages, streaming, config)
 
 ---
 *Phase: 01-working-tool*
-*Completed: 2026-03-22*
+*Completed: 2026-03-23*
