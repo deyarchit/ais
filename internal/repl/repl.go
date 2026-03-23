@@ -36,8 +36,9 @@ func classifyAPIError(err error) error {
 // Ctrl+C (SIGINT) or Ctrl+D (EOF on stdin). No welcome header is printed (D-03).
 // The same gemini.Client is reused across turns to preserve ChatSession history (D-11, MODE-03).
 // showRefs controls whether source citations are printed after each response.
-func Run(ctx context.Context, showRefs bool) error {
-	client, err := gemini.NewClient(ctx)
+// cfg holds tunable generation parameters (temperature, thinking budget).
+func Run(ctx context.Context, showRefs bool, cfg gemini.ClientConfig) error {
+	client, err := gemini.NewClient(ctx, cfg)
 	if err != nil {
 		return err
 	}
@@ -48,7 +49,9 @@ func Run(ctx context.Context, showRefs bool) error {
 	if err != nil {
 		return fmt.Errorf("readline init: %w", err)
 	}
-	defer rl.Close()
+	defer func() {
+		_ = rl.Close()
+	}()
 
 	for {
 		line, err := rl.Readline()
