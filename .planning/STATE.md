@@ -4,7 +4,7 @@ milestone: v1.0
 milestone_name: milestone
 status: unknown
 stopped_at: "Completed 02-01-PLAN.md (error handling: missing key, API error classification, empty query guard)"
-last_updated: "2026-03-23T10:14:05.436Z"
+last_updated: "2026-03-23T11:30:00.000Z"
 progress:
   total_phases: 2
   completed_phases: 1
@@ -72,6 +72,7 @@ Recent decisions affecting current work:
 - [Phase 01-working-tool]: All 5 live API tests approved by user on 2026-03-23 — Phase 1 fully complete
 - [Phase 02-production-ready]: Duplicate classifyAPIError in both main.go and repl.go rather than change Run() signature — avoids breaking caller interface
 - [Phase 02-production-ready]: Substring matching on Gemini SDK error message strings for error classification — SDK does not expose typed sentinel errors
+- [Quick 260323-qcc]: chzyer/readline used for REPL input; no HistoryFile configured — session-only history to avoid leaking queries to disk
 
 ### Pending Todos
 
@@ -86,10 +87,11 @@ None yet.
 | # | Description | Date | Commit | Directory |
 |---|-------------|------|--------|-----------|
 | 260323-q65 | Make it optional to show references in the output | 2026-03-23 | 0263ec7 | [260323-q65-make-it-optional-to-show-references-in-t](./quick/260323-q65-make-it-optional-to-show-references-in-t/) |
+| 260323-qcc | CLI should support backspace/cursor editing (readline) | 2026-03-23 | 23b6393 | [260323-qcc-cli-should-support-doing-backspaces-curs](./quick/260323-qcc-cli-should-support-doing-backspaces-curs/) |
 
 ## Session Continuity
 
-Last activity: 2026-03-23 - Completed quick task 260323-q65: Make it optional to show references in the output
-Last session: 2026-03-23T10:14:05.434Z
-Stopped at: Completed 02-01-PLAN.md (error handling: missing key, API error classification, empty query guard)
+Last activity: 2026-03-23 - Completed quick task 260323-qcc: CLI readline support (backspace/cursor/history)
+Last session: 2026-03-23T11:30:00.000Z
+Stopped at: Completed quick task 260323-qcc (readline REPL input)
 Resume file: None
