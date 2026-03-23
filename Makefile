@@ -2,6 +2,10 @@
 build:
 	go build -o ./bin/ais ./cmd/ais
 
+## install: build and install the binary to /usr/local/bin
+install: build
+	cp ./bin/ais /usr/local/bin/ais
+
 # ── Development ────────────────────────────────────────────────────────────────
 dev:
 	go run ./cmd/ais
