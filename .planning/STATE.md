@@ -81,8 +81,15 @@ None yet.
 
 None yet.
 
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260323-q65 | Make it optional to show references in the output | 2026-03-23 | 0263ec7 | [260323-q65-make-it-optional-to-show-references-in-t](./quick/260323-q65-make-it-optional-to-show-references-in-t/) |
+
 ## Session Continuity
 
+Last activity: 2026-03-23 - Completed quick task 260323-q65: Make it optional to show references in the output
 Last session: 2026-03-23T10:14:05.434Z
 Stopped at: Completed 02-01-PLAN.md (error handling: missing key, API error classification, empty query guard)
 Resume file: None
