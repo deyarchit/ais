@@ -97,6 +97,7 @@ None yet.
 |---|-------------|------|--------|-----------|
 | 260323-q65 | Make it optional to show references in the output | 2026-03-23 | 0263ec7 | [260323-q65-make-it-optional-to-show-references-in-t](./quick/260323-q65-make-it-optional-to-show-references-in-t/) |
 | 260323-qcc | CLI should support backspace/cursor editing (readline) | 2026-03-23 | 23b6393 | [260323-qcc-cli-should-support-doing-backspaces-curs](./quick/260323-qcc-cli-should-support-doing-backspaces-curs/) |
+| 260323-u7z | Add a make command to install the executable | 2026-03-23 | 02576e1 | [260323-u7z-add-a-make-command-to-install-the-execut](./quick/260323-u7z-add-a-make-command-to-install-the-execut/) |
 
 ## Session Continuity
 
