@@ -45,7 +45,11 @@ Plans:
   2. A network failure or API error displays the failure reason and suggests a next step (e.g., check connectivity, verify key)
   3. Unknown flags or empty input show usage help, not a stack trace
   4. `make lint` passes with zero golangci-lint violations
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 02-01-PLAN.md — Error handling: missing key message, API error classification, empty query guard
+- [ ] 02-02-PLAN.md — Lint compliance: replace fmt.Print* with fmt.Fprint*, make lint zero violations
 
 ## Progress
 
