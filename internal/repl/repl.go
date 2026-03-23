@@ -16,6 +16,22 @@ import (
 	"ais/internal/render"
 )
 
+// classifyAPIError appends a human-readable suggestion to API errors.
+// Mirrors the classification in cmd/ais/main.go — both call sites need this.
+func classifyAPIError(err error) error {
+	msg := err.Error()
+	switch {
+	case strings.Contains(msg, "403") || strings.Contains(msg, "API key not valid"):
+		return fmt.Errorf("%w — verify your API key is valid and has not expired", err)
+	case strings.Contains(msg, "429") || strings.Contains(msg, "Resource exhausted"):
+		return fmt.Errorf("%w — you have exceeded your API quota — wait before retrying", err)
+	case strings.Contains(msg, "connection refused") || strings.Contains(msg, "deadline exceeded") || strings.Contains(msg, "no such host"):
+		return fmt.Errorf("%w — check your internet connection", err)
+	default:
+		return err
+	}
+}
+
 // Run starts the interactive REPL loop. It blocks until the user sends
 // Ctrl+C (SIGINT) or Ctrl+D (EOF on stdin). No welcome header is printed (D-03).
 // The same gemini.Client is reused across turns to preserve ChatSession history (D-11, MODE-03).
@@ -39,7 +55,7 @@ func Run(ctx context.Context) error {
 
 		input := strings.TrimSpace(scanner.Text())
 		if input == "" {
-			// Empty input — re-prompt without sending to API
+			// Whitespace-only input is treated as empty — re-prompt without API call (D-11)
 			continue
 		}
 
@@ -51,8 +67,8 @@ func Run(ctx context.Context) error {
 		resp, err := client.Ask(ctx, input)
 		s.Stop()
 		if err != nil {
-			// Print error but don't exit the REPL — allow retry
-			fmt.Fprintf(os.Stderr, "error: %v\n", err)
+			// Print error but don't exit the REPL — allow retry (D-09)
+			fmt.Fprintf(os.Stderr, "error: %v\n", classifyAPIError(err))
 			continue
 		}
 
