@@ -17,15 +17,15 @@ func Markdown(text string) {
 		glamour.WithWordWrap(120),
 	)
 	if err != nil {
-		fmt.Fprintln(os.Stdout, text)
+		_, _ = fmt.Fprintln(os.Stdout, text)
 		return
 	}
 	out, err := r.Render(text)
 	if err != nil {
-		fmt.Fprintln(os.Stdout, text)
+		_, _ = fmt.Fprintln(os.Stdout, text)
 		return
 	}
-	fmt.Fprint(os.Stdout, out)
+	_, _ = fmt.Fprint(os.Stdout, out)
 }
 
 // Sources prints the source citation block after a response.
@@ -33,13 +33,13 @@ func Markdown(text string) {
 // Per D-06: if urls is empty, prints "Sources: none".
 // Per D-07: no horizontal rule separator.
 func Sources(urls []string) {
-	fmt.Fprintln(os.Stdout)
+	_, _ = fmt.Fprintln(os.Stdout)
 	if len(urls) == 0 {
-		fmt.Fprintln(os.Stdout, "Sources: none")
+		_, _ = fmt.Fprintln(os.Stdout, "Sources: none")
 		return
 	}
-	fmt.Fprintln(os.Stdout, "Sources:")
+	_, _ = fmt.Fprintln(os.Stdout, "Sources:")
 	for i, u := range urls {
-		fmt.Fprintf(os.Stdout, "  %d. %s\n", i+1, strings.TrimSpace(u))
+		_, _ = fmt.Fprintf(os.Stdout, "  %d. %s\n", i+1, strings.TrimSpace(u))
 	}
 }

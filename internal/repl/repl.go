@@ -45,11 +45,11 @@ func Run(ctx context.Context) error {
 	const prompt = "ais> " // D-01: branded prompt
 
 	for {
-		fmt.Fprint(os.Stdout, prompt)
+		_, _ = fmt.Fprint(os.Stdout, prompt)
 
 		if !scanner.Scan() {
 			// Ctrl+D (EOF) — clean exit (D-02)
-			fmt.Fprintln(os.Stdout)
+			_, _ = fmt.Fprintln(os.Stdout)
 			break
 		}
 
