@@ -17,7 +17,7 @@ import (
 
 func main() {
 	query := flag.String("q", "", "Query to ask in one-shot mode")
-	noRefs := flag.Bool("no-refs", false, "Suppress source citation block")
+	showRefs := flag.Bool("show-refs", false, "Show source citation block")
 	flag.Parse()
 
 	if *query != "" {
@@ -26,7 +26,7 @@ func main() {
 			flag.Usage()
 			os.Exit(1)
 		}
-		if err := runOneShot(context.Background(), *query, !*noRefs); err != nil {
+		if err := runOneShot(context.Background(), *query, *showRefs); err != nil {
 			fmt.Fprintf(os.Stderr, "error: %v\n", err)
 			os.Exit(1)
 		}
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	// Chat REPL mode (MODE-02, D-11)
-	if err := repl.Run(context.Background(), !*noRefs); err != nil {
+	if err := repl.Run(context.Background(), *showRefs); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
