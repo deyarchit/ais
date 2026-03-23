@@ -17,6 +17,7 @@ import (
 
 func main() {
 	query := flag.String("q", "", "Query to ask in one-shot mode")
+	noRefs := flag.Bool("no-refs", false, "Suppress source citation block")
 	flag.Parse()
 
 	if *query != "" {
@@ -25,7 +26,7 @@ func main() {
 			flag.Usage()
 			os.Exit(1)
 		}
-		if err := runOneShot(context.Background(), *query); err != nil {
+		if err := runOneShot(context.Background(), *query, !*noRefs); err != nil {
 			fmt.Fprintf(os.Stderr, "error: %v\n", err)
 			os.Exit(1)
 		}
@@ -33,7 +34,7 @@ func main() {
 	}
 
 	// Chat REPL mode (MODE-02, D-11)
-	if err := repl.Run(context.Background()); err != nil {
+	if err := repl.Run(context.Background(), !*noRefs); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
@@ -58,7 +59,7 @@ func classifyAPIError(err error) error {
 
 // runOneShot executes a single query and exits. Creates a fresh Client so no
 // prior history is attached (one-shot = stateless, per D-10).
-func runOneShot(ctx context.Context, query string) error {
+func runOneShot(ctx context.Context, query string, showRefs bool) error {
 	client, err := gemini.NewClient(ctx)
 	if err != nil {
 		return err
@@ -79,7 +80,9 @@ func runOneShot(ctx context.Context, query string) error {
 	render.Markdown(gemini.ResponseText(resp))
 
 	// Print source citations (OUT-02, SRCH-02, D-05, D-06)
-	render.Sources(gemini.ExtractSources(resp))
+	if showRefs {
+		render.Sources(gemini.ExtractSources(resp))
+	}
 
 	return nil
 }

@@ -35,7 +35,8 @@ func classifyAPIError(err error) error {
 // Run starts the interactive REPL loop. It blocks until the user sends
 // Ctrl+C (SIGINT) or Ctrl+D (EOF on stdin). No welcome header is printed (D-03).
 // The same gemini.Client is reused across turns to preserve ChatSession history (D-11, MODE-03).
-func Run(ctx context.Context) error {
+// showRefs controls whether source citations are printed after each response.
+func Run(ctx context.Context, showRefs bool) error {
 	client, err := gemini.NewClient(ctx)
 	if err != nil {
 		return err
@@ -76,7 +77,9 @@ func Run(ctx context.Context) error {
 		render.Markdown(gemini.ResponseText(resp))
 
 		// Print source citations (OUT-02, SRCH-02, D-05, D-06)
-		render.Sources(gemini.ExtractSources(resp))
+		if showRefs {
+			render.Sources(gemini.ExtractSources(resp))
+		}
 	}
 
 	if err := scanner.Err(); err != nil && !errors.Is(err, io.EOF) {
