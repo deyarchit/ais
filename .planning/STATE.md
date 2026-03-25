@@ -102,7 +102,7 @@ None yet.
 
 ## Session Continuity
 
-Last activity: 2026-03-25
+Last activity: 2026-03-25 - Completed quick task 260325-nq2: Fix broken output lines in the CLI (text wrapping/formatting issue)
 Last session: 2026-03-25T00:00:00.000Z
 Stopped at: Completed quick task 260325-nq2 (dynamic terminal word wrap)
 Resume file: None
