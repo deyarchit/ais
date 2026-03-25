@@ -6,15 +6,20 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/glamour"
+	"golang.org/x/term"
 )
 
 // Markdown renders a markdown string to the terminal using glamour auto style.
 // "auto" picks dark or light theme based on terminal background.
 // Falls back to printing raw text if glamour fails.
 func Markdown(text string) {
+	width := 80 // non-TTY fallback
+	if w, _, err := term.GetSize(int(os.Stdout.Fd())); err == nil && w > 0 {
+		width = w
+	}
 	r, err := glamour.NewTermRenderer(
 		glamour.WithAutoStyle(),
-		glamour.WithWordWrap(120),
+		glamour.WithWordWrap(width),
 	)
 	if err != nil {
 		_, _ = fmt.Fprintln(os.Stdout, text)
