@@ -8,72 +8,63 @@ A Go CLI tool that wraps the Gemini API with always-on Google Search grounding, 
 
 Every query returns a grounded, source-cited answer — either as a quick one-liner or a full conversation — without leaving the terminal.
 
-## Requirements
+## Current State (v1.0 — Shipped 2026-03-23)
 
-### Validated
+The tool is feature-complete and production-ready for daily use.
 
-- [x] One-shot mode: `ais -q "query"` returns answer and exits — Validated in Phase 1
-- [x] Interactive chat mode: `ais` (no args) opens a REPL with full multi-turn conversation context — Validated in Phase 1
-- [x] Google Search grounding always enabled on every query — Validated in Phase 1
-- [x] Responses rendered as markdown in the terminal (via glamour) — Validated in Phase 1
-- [x] Grounding sources/URLs listed after each response — Validated in Phase 1
-- [x] GEMINI_API_KEY env var used for authentication — Validated in Phase 1
-- [x] Graceful error handling: missing API key, network failure, API errors — Validated in Phase 2
-- [x] `--temperature` flag for sampling temperature [0.0, 2.0] — Validated in Phase 3
-- [x] `--thinking-budget` flag for reasoning token budget (none/low/medium/high/auto) — Validated in Phase 3
+**What's working:**
+- `ais -q "query"` — one-shot mode with spinner, markdown rendering, source citations
+- `ais` — interactive REPL with multi-turn conversation history
+- Google Search grounding always-on on every query
+- `--temperature` flag (float [0.0, 2.0], default 0.7)
+- `--thinking-budget` flag (presets: none/low/medium/high/auto, default auto)
+- Actionable error messages for missing key, network, auth/quota failures
+- `make build` + `make lint` pass clean
 
-### Active
+**Tech stack:**
+- Go, `google.golang.org/genai` (Gemini SDK), `glamour` (markdown), `readline` (REPL input), `spinner`
+- `cmd/ais/main.go` → `internal/gemini/`, `internal/render/`, `internal/repl/`
 
-- [ ] Streaming output — response streams to terminal as it arrives
+## Next Milestone Goals (v2 — TBD)
 
-### Out of Scope
+Candidates (not yet scoped):
+- Streaming output — response streams to terminal as it arrives
+- Stdin pipe support — `echo "query" | ais` for scripting
+- System prompt flag (`-s`) for persona/context injection
+- Visual chat prompt showing turn number or context length
 
-- Config file — env var only, keeps it simple for daily use
-- Multiple AI providers — Gemini-only for now
-- Persisting conversation history to disk — sessions are ephemeral
-- Web UI — terminal-only
-
-## Context
-
-- Go 1.25.7 project with strict golangci-lint config (slog for logging, errors must be wrapped)
-- Existing scaffold has a `cmd/server/` pattern in Makefile — will pivot to `cmd/ais/` for the CLI binary
-- Gemini Go SDK: `google.golang.org/genai`
-- Markdown rendering: `github.com/charmbracelet/glamour` (standard Go CLI choice)
-- The `ais` module name already matches the tool name — no rename needed
+*Start with `/gsd:new-milestone` to scope and plan v2.*
 
 ## Constraints
 
 - **Tech stack**: Go only — no other runtimes
 - **Auth**: GEMINI_API_KEY env var — no OAuth, no config files
-- **Linting**: Must pass existing golangci-lint rules (slog for logs, fmt.Print* forbidden for log output, errors wrapped)
+- **Linting**: Must pass existing golangci-lint rules (slog for logs, `fmt.Print*` forbidden, errors wrapped)
 - **Quality**: Usable daily — error messages must be actionable, not cryptic
 
-## Key Decisions
+## Key Decisions (Locked)
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Flag-based mode switching (`-q`) | Predictable: no args = chat, `-q` = one-shot | — Pending |
-| Always-on search grounding | Simplifies UX — no per-query toggle needed | — Pending |
-| Streaming output | Better UX for long AI responses | — Pending |
-| Glamour for markdown rendering | De-facto standard for Go CLIs, handles terminal width | — Pending |
-| Pivot from `cmd/server` to `cmd/ais` | Tool is a CLI, not a server | — Pending |
+| Flag-based mode switching (`-q`) | Predictable: no args = chat, `-q` = one-shot | Shipped v1.0 |
+| Always-on search grounding | Simplifies UX — no per-query toggle needed | Shipped v1.0 |
+| Glamour for markdown rendering | De-facto standard for Go CLIs, handles terminal width | Shipped v1.0 |
+| Pivot from `cmd/server` to `cmd/ais` | Tool is a CLI, not a server | Shipped v1.0 |
+| New `google.golang.org/genai` SDK | Deprecated SDK would require migration later | Shipped v1.0 |
+| Duplicate `classifyAPIError` (not shared) | Avoided changing `repl.Run()` signature at Phase 2 | Technical debt — refactor if 3rd call site |
+| Pre-validated `ClientConfig` struct | Clean boundary between CLI flags and API params | Shipped v1.0 |
+| Streaming deferred | Scope control for v1.0 | Deferred to v2 |
 
-## Evolution
+## Out of Scope (Permanent)
 
-This document evolves at phase transitions and milestone boundaries.
-
-**After each phase transition** (via `/gsd:transition`):
-1. Requirements invalidated? → Move to Out of Scope with reason
-2. Requirements validated? → Move to Validated with phase reference
-3. New requirements emerged? → Add to Active
-4. Decisions to log? → Add to Key Decisions
-5. "What This Is" still accurate? → Update if drifted
-
-**After each milestone** (via `/gsd:complete-milestone`):
-1. Full review of all sections
-2. Core Value check — still the right priority?
-3. Audit Out of Scope — reasons still valid?
-4. Update Context with current state
+| Feature | Reason |
+|---------|--------|
+| Config file | Env var is sufficient; config file adds complexity without value |
+| Multiple AI providers | Gemini-only keeps the scope tight |
+| Persistent conversation history | Sessions are ephemeral; disk storage is v2+ |
+| Web UI / TUI | Terminal text output is the right interface |
+| OAuth / complex auth | API key is the right auth model for a personal CLI tool |
 
 ---
-*Last updated: 2026-03-23 after Phase 3 complete — temperature and thinking-budget flags shipped*
+*v1.0 archived: .planning/milestones/v1.0-ROADMAP.md*
+*Last updated: 2026-03-23 — v1.0 milestone complete*

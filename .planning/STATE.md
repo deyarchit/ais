@@ -1,16 +1,16 @@
 ---
 gsd_state_version: 1.0
 milestone: v1.0
-milestone_name: milestone
-status: unknown
-stopped_at: Completed 03-01-PLAN.md (temperature and thinking-budget flags)
-last_updated: "2026-03-23T16:02:37.026Z"
+milestone_name: MVP
+status: milestone_complete
+stopped_at: v1.0 milestone archived — all 3 phases shipped
+last_updated: "2026-03-23T00:00:00.000Z"
 last_activity: 2026-03-23
 progress:
   total_phases: 3
-  completed_phases: 2
+  completed_phases: 3
   total_plans: 7
-  completed_plans: 6
+  completed_plans: 7
 ---
 
 # Project State

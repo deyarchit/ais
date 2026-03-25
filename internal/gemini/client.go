@@ -44,6 +44,7 @@ func NewClient(ctx context.Context, cfg ClientConfig) (*Client, error) {
 	config := &genai.GenerateContentConfig{
 		Tools: []*genai.Tool{
 			{GoogleSearch: &genai.GoogleSearch{}},
+			{URLContext: &genai.URLContext{}},
 		},
 		Temperature: &temp,
 	}
