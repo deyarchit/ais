@@ -98,10 +98,11 @@ None yet.
 | 260323-q65 | Make it optional to show references in the output | 2026-03-23 | 0263ec7 | [260323-q65-make-it-optional-to-show-references-in-t](./quick/260323-q65-make-it-optional-to-show-references-in-t/) |
 | 260323-qcc | CLI should support backspace/cursor editing (readline) | 2026-03-23 | 23b6393 | [260323-qcc-cli-should-support-doing-backspaces-curs](./quick/260323-qcc-cli-should-support-doing-backspaces-curs/) |
 | 260323-u7z | Add a make command to install the executable | 2026-03-23 | 02576e1 | [260323-u7z-add-a-make-command-to-install-the-execut](./quick/260323-u7z-add-a-make-command-to-install-the-execut/) |
+| 260325-nq2 | Fix broken output lines in the CLI text (dynamic word wrap) | 2026-03-25 | 2c4536f | [260325-nq2-fix-broken-output-lines-in-the-cli-text-](./quick/260325-nq2-fix-broken-output-lines-in-the-cli-text-/) |
 
 ## Session Continuity
 
-Last activity: 2026-03-23
-Last session: 2026-03-23T15:57:34.913Z
-Stopped at: Completed 03-01-PLAN.md (temperature and thinking-budget flags)
+Last activity: 2026-03-25
+Last session: 2026-03-25T00:00:00.000Z
+Stopped at: Completed quick task 260325-nq2 (dynamic terminal word wrap)
 Resume file: None
