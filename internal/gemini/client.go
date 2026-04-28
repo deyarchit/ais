@@ -4,7 +4,10 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"strings"
+	"time"
 
+	"github.com/cenkalti/backoff/v5"
 	"google.golang.org/genai"
 )
 
@@ -68,11 +71,42 @@ func NewClient(ctx context.Context, cfg ClientConfig) (*Client, error) {
 	}, nil
 }
 
+// isRetryable returns true for transient errors that should be retried.
+// Gemini occasionally returns 503 UNAVAILABLE and 429 rate-limit errors transiently.
+func isRetryable(err error) bool {
+	msg := err.Error()
+	return strings.Contains(msg, "503") ||
+		strings.Contains(msg, "UNAVAILABLE") ||
+		strings.Contains(msg, "429") ||
+		strings.Contains(msg, "Resource exhausted")
+}
+
 // Ask sends a message and returns the full text response and grounding metadata.
 // For one-shot mode, call NewClient before each query so history is fresh.
 // For chat mode, reuse the same Client across turns to preserve history (MODE-03).
+// Transient 503/UNAVAILABLE and 429/Resource exhausted errors are retried with
+// exponential backoff (max 30s interval). Each retry prints a message to stderr.
 func (c *Client) Ask(ctx context.Context, prompt string) (*genai.GenerateContentResponse, error) {
-	resp, err := c.chat.Send(ctx, genai.NewPartFromText(prompt))
+	bo := backoff.NewExponentialBackOff()
+	bo.MaxInterval = 30 * time.Second
+
+	attempt := 0
+	resp, err := backoff.Retry(ctx, func() (*genai.GenerateContentResponse, error) {
+		r, e := c.chat.Send(ctx, genai.NewPartFromText(prompt))
+		if e != nil {
+			if isRetryable(e) {
+				return nil, e // retryable — backoff will retry
+			}
+			return nil, backoff.Permanent(e) // non-retryable — stop immediately
+		}
+		return r, nil
+	},
+		backoff.WithBackOff(bo),
+		backoff.WithNotify(func(e error, wait time.Duration) {
+			attempt++
+			fmt.Fprintf(os.Stderr, "retrying after %.1fs (attempt %d): %v\n", wait.Seconds(), attempt, e)
+		}),
+	)
 	if err != nil {
 		return nil, fmt.Errorf("send message: %w", err)
 	}
