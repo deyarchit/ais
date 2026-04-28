@@ -1,0 +1,27 @@
+{
+  "eval_id": 2,
+  "eval_name": "address-already-in-use-error",
+  "prompt": "I'm getting 'bind: address already in use' when starting my Go HTTP server on macOS. How do I find and kill the process using that port?",
+  "assertions": [
+    {
+      "id": "includes_lsof",
+      "description": "Response includes the lsof command for finding port usage",
+      "check": "response.md contains 'lsof'"
+    },
+    {
+      "id": "includes_kill",
+      "description": "Response includes kill or pkill command to terminate the process",
+      "check": "response.md contains 'kill'"
+    },
+    {
+      "id": "includes_port_placeholder",
+      "description": "Response includes a specific port number or placeholder in the command example",
+      "check": "response.md contains a port number or '<port>' style placeholder in command"
+    },
+    {
+      "id": "actionable_commands",
+      "description": "Response contains copy-pasteable shell commands (lines starting with $ or backtick code blocks)",
+      "check": "response.md contains shell code block or $ prefixed commands"
+    }
+  ]
+}

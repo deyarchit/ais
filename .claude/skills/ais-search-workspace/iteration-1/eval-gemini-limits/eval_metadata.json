@@ -1,0 +1,27 @@
+{
+  "eval_id": 1,
+  "eval_name": "gemini-rate-limits",
+  "prompt": "What are the current rate limits and free tier quotas for the Gemini 2.0 Flash API?",
+  "assertions": [
+    {
+      "id": "specific_numbers_present",
+      "description": "Response contains specific numeric limits (RPM, TPD, TPM, or RPD values)",
+      "check": "response.md contains at least one numeric rate limit value"
+    },
+    {
+      "id": "mentions_flash_2",
+      "description": "Response specifically addresses Gemini 2.0 Flash, not just generic Gemini",
+      "check": "response.md mentions 'Gemini 2.0 Flash' or 'gemini-2.0-flash'"
+    },
+    {
+      "id": "has_source_url",
+      "description": "with_skill sources.txt contains at least one URL (without_skill cannot have sources)",
+      "check": "sources.txt is not empty and does not contain only 'none'"
+    },
+    {
+      "id": "free_tier_addressed",
+      "description": "Response explicitly addresses the free tier (not just paid tier)",
+      "check": "response.md mentions 'free' tier or free quota"
+    }
+  ]
+}

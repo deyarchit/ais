@@ -1,0 +1,27 @@
+{
+  "eval_id": 3,
+  "eval_name": "go-iter-range-over-func",
+  "prompt": "I'm writing a Go package and want to use the `iter` package and range-over-func to create a generic tree walker. What Go version introduced these features as stable (not experimental)? Show me a concrete, working implementation of a binary tree that supports `for range` iteration using the iter.Seq type. Include any gotchas or caveats for production use.",
+  "assertions": [
+    {
+      "id": "correct_stable_version",
+      "description": "Response correctly states Go 1.23 as the version that stabilised range-over-func (not 1.22 experimental)"
+    },
+    {
+      "id": "uses_iter_seq_type",
+      "description": "Code uses iter.Seq[T] type from the iter package (not a hand-rolled function signature)"
+    },
+    {
+      "id": "yield_bool_return_handled",
+      "description": "Implementation correctly handles yield returning false for early-exit (break support)"
+    },
+    {
+      "id": "working_for_range_syntax",
+      "description": "Example demonstrates the `for val := range tree.All()` syntax"
+    },
+    {
+      "id": "caveats_mentioned",
+      "description": "Response mentions at least one production caveat (yield-after-false panic, concurrency, stack depth, etc.)"
+    }
+  ]
+}

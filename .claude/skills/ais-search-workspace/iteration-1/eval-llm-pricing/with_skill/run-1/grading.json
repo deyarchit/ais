@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "expectations": [
+    {
+      "text": "with_skill references current/post-training-cutoff model names (e.g. Sonnet 4.x, GPT-5, Gemini 2.5)",
+      "passed": true,
+      "evidence": "with_skill: lists Sonnet 4.6, GPT-5.x, Grok 4.1, Gemini 2.5 Flash-Lite. without_skill: only says 'Claude Sonnet (latest)', 'GPT-4o (latest)' \u2014 no current model IDs, stale $0.075 Gemini pricing from mid-2025"
+    },
+    {
+      "text": "Response contains specific per-million-token dollar amounts",
+      "passed": true,
+      "evidence": "Both contain specific dollar figures in tables"
+    },
+    {
+      "text": "Response calculates actual cost at the user's stated scale (10M tokens/day)",
+      "passed": true,
+      "evidence": "Both build a per-day cost table at the 10M token scale"
+    },
+    {
+      "text": "Response identifies a clear cheapest option with justification",
+      "passed": true,
+      "evidence": "Both correctly identify Gemini 2.0 Flash as cheapest \u2014 but with_skill has current $0.10/$0.40 pricing vs stale $0.075/$0.30 in without_skill"
+    },
+    {
+      "text": "with_skill sources.txt contains at least one URL (without_skill cannot have sources)",
+      "passed": true,
+      "evidence": "with_skill sources.txt has 5 Vertex AI grounding URLs"
+    }
+  ]
+}

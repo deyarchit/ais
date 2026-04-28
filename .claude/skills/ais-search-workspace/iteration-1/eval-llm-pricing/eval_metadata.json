@@ -1,0 +1,27 @@
+{
+  "eval_id": 5,
+  "eval_name": "llm-api-pricing-comparison",
+  "prompt": "I'm picking an LLM API for a production app that needs to process around 10 million tokens per day (roughly 70% input, 30% output). What are the current per-million-token prices for Claude Sonnet (latest), GPT-4o (latest), and Gemini 2.0 Flash? Build a cost comparison table and tell me which is cheapest for my use case. Also note any relevant context window or rate limit differences.",
+  "assertions": [
+    {
+      "id": "current_model_names",
+      "description": "with_skill references models that are current/post-training-cutoff (e.g. Sonnet 4.x, GPT-5, Gemini 2.5)"
+    },
+    {
+      "id": "specific_dollar_figures",
+      "description": "Response contains specific per-million-token dollar amounts (not vague ranges)"
+    },
+    {
+      "id": "cost_at_scale_calculated",
+      "description": "Response calculates or estimates actual cost at the user's stated scale (10M tokens/day)"
+    },
+    {
+      "id": "clear_cheapest_winner",
+      "description": "Response identifies a clear cheapest option with justification"
+    },
+    {
+      "id": "has_source_url",
+      "description": "with_skill sources.txt contains at least one URL (without_skill cannot have sources)"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Response includes the lsof command",
+      "passed": true,
+      "evidence": "Both with_skill and without_skill contain the required commands (stable knowledge case)"
+    },
+    {
+      "text": "Response includes kill command",
+      "passed": true,
+      "evidence": "Both with_skill and without_skill contain the required commands (stable knowledge case)"
+    },
+    {
+      "text": "Response includes port number or placeholder",
+      "passed": true,
+      "evidence": "Both with_skill and without_skill contain the required commands (stable knowledge case)"
+    },
+    {
+      "text": "Response contains copy-pasteable shell commands",
+      "passed": true,
+      "evidence": "Both with_skill and without_skill contain the required commands (stable knowledge case)"
+    }
+  ],
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 4,
+    "failed": 0,
+    "total": 4
+  }
+}

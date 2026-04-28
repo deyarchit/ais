@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "expectations": [
+    {
+      "text": "Response correctly states Go 1.23 as the version that stabilised range-over-func",
+      "passed": true,
+      "evidence": "Both responses explicitly state Go 1.23 as stable release"
+    },
+    {
+      "text": "Code uses iter.Seq[T] type from the iter package",
+      "passed": true,
+      "evidence": "Both use iter.Seq[E]/iter.Seq[T] throughout the implementation"
+    },
+    {
+      "text": "Implementation correctly handles yield returning false for early-exit",
+      "passed": true,
+      "evidence": "Both propagate yield=false correctly in the recursive push/traverse function"
+    },
+    {
+      "text": "Example demonstrates the `for val := range tree.All()` syntax",
+      "passed": true,
+      "evidence": "Both show for-range usage with the iterator method"
+    },
+    {
+      "text": "Response mentions at least one production caveat (yield-after-false, concurrency, stack depth, etc.)",
+      "passed": true,
+      "evidence": "with_skill: 5 caveats; without_skill: 10 caveats including iter.Pull goroutine leak warning"
+    }
+  ]
+}

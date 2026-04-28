@@ -1,0 +1,27 @@
+{
+  "eval_id": 0,
+  "eval_name": "latest-go-version",
+  "prompt": "What's the latest stable version of Go? What were the headline features or changes in that release?",
+  "assertions": [
+    {
+      "id": "version_number_present",
+      "description": "Response contains a specific Go version number (e.g. 1.23, 1.24)",
+      "check": "response.md contains a version string matching pattern '1\\.[0-9]+(\\.[0-9]+)?'"
+    },
+    {
+      "id": "ais_invoked",
+      "description": "with_skill response references a version likely beyond training data cutoff (1.24+), indicating ais was actually used",
+      "check": "with_skill response.md mentions '1.24' or later"
+    },
+    {
+      "id": "has_release_features",
+      "description": "Response names at least one specific language or stdlib feature from the release",
+      "check": "response.md mentions at least one named feature, not just a version number"
+    },
+    {
+      "id": "has_source_url",
+      "description": "with_skill sources.txt contains at least one URL",
+      "check": "sources.txt is not empty and does not contain only 'none'"
+    }
+  ]
+}

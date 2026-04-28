@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Response contains a specific Go version number",
+      "passed": true,
+      "evidence": "Both responses contain version numbers matching '1.XX' pattern"
+    },
+    {
+      "text": "with_skill references version beyond training cutoff (1.24+)",
+      "passed": true,
+      "evidence": "with_skill mentions Go 1.26.1 and 1.25 (beyond training cutoff of 1.23/1.24)"
+    },
+    {
+      "text": "Response names at least one specific release feature",
+      "passed": true,
+      "evidence": "with_skill lists 7+ named features from Go 1.25 release"
+    },
+    {
+      "text": "with_skill sources.txt contains at least one URL",
+      "passed": true,
+      "evidence": "with_skill sources.txt has 7 URLs"
+    }
+  ],
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 4,
+    "failed": 0,
+    "total": 4
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 5,
+    "failed": 0,
+    "total": 5
+  },
+  "expectations": [
+    {
+      "text": "Response compares all three: Longhorn, OpenEBS, and Rook-Ceph",
+      "passed": true,
+      "evidence": "Both compare all three options in detail"
+    },
+    {
+      "text": "Response includes resource overhead (CPU/RAM) details",
+      "passed": true,
+      "evidence": "with_skill: per-node CPU ranges; without_skill: specific GB RAM requirements per solution"
+    },
+    {
+      "text": "Response gives a clear recommendation with justification for a 3-node home lab",
+      "passed": true,
+      "evidence": "Both recommend Longhorn with clear reasoning"
+    },
+    {
+      "text": "Response mentions k3s-specific context (local-path provisioner or k3s compatibility)",
+      "passed": true,
+      "evidence": "Both address local-path limitation and k3s integration context"
+    },
+    {
+      "text": "Response includes installation steps or helm commands for the recommended option",
+      "passed": true,
+      "evidence": "Both include helm install commands for Longhorn"
+    }
+  ]
+}

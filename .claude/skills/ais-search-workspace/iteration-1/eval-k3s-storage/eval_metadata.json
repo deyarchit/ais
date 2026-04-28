@@ -1,0 +1,27 @@
+{
+  "eval_id": 4,
+  "eval_name": "k3s-bare-metal-storage",
+  "prompt": "I'm planning a bare-metal k3s Kubernetes cluster for a 3-node home lab. What are the current recommended persistent storage solutions (CSI drivers) available for k3s in 2025? Compare Longhorn, OpenEBS, and Rook-Ceph for this use case — include maturity, resource overhead, and ease of setup. Which would you recommend and why?",
+  "assertions": [
+    {
+      "id": "all_three_compared",
+      "description": "Response compares all three options: Longhorn, OpenEBS, and Rook-Ceph"
+    },
+    {
+      "id": "resource_overhead_addressed",
+      "description": "Response includes resource overhead (CPU/RAM) details for the options"
+    },
+    {
+      "id": "clear_recommendation",
+      "description": "Response gives a clear recommendation with justification for a 3-node home lab"
+    },
+    {
+      "id": "k3s_specific_context",
+      "description": "Response mentions k3s-specific context (e.g. local-path provisioner limitation, or k3s compatibility)"
+    },
+    {
+      "id": "actionable_install_info",
+      "description": "Response includes installation steps or helm commands for the recommended option"
+    }
+  ]
+}

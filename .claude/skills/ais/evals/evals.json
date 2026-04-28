@@ -1,0 +1,77 @@
+{
+  "skill_name": "ais-search",
+  "evals": [
+    {
+      "id": 0,
+      "prompt": "What's the latest stable version of Go? What were the headline features or changes in that release?",
+      "expected_output": "Current Go version number with accurate release notes or feature summary, ideally citing a source.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "version_number_present",
+          "description": "Response contains a specific Go version number (e.g. 1.23, 1.24)"
+        },
+        {
+          "id": "ais_invoked",
+          "description": "with_skill response references a version likely beyond training data cutoff (1.24+), indicating ais was used"
+        },
+        {
+          "id": "has_release_features",
+          "description": "Response names at least one specific language or stdlib feature from the release"
+        },
+        {
+          "id": "has_source_url",
+          "description": "with_skill sources.txt contains at least one URL"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "prompt": "What are the current rate limits and free tier quotas for the Gemini 2.0 Flash API?",
+      "expected_output": "Accurate, current rate limit numbers (RPM/TPM/RPD) for Gemini 2.0 Flash, with a source link.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "specific_numbers_present",
+          "description": "Response contains specific numeric limits (RPM, TPD, TPM, or RPD values)"
+        },
+        {
+          "id": "mentions_flash_2",
+          "description": "Response specifically addresses Gemini 2.0 Flash, not just generic Gemini"
+        },
+        {
+          "id": "has_source_url",
+          "description": "with_skill sources.txt contains at least one URL"
+        },
+        {
+          "id": "free_tier_addressed",
+          "description": "Response explicitly addresses the free tier (not just paid tier)"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I'm getting 'bind: address already in use' when starting my Go HTTP server on macOS. How do I find and kill the process using that port?",
+      "expected_output": "Practical shell commands to find the PID using the port and kill it (e.g. lsof, kill), with explanation.",
+      "files": [],
+      "assertions": [
+        {
+          "id": "includes_lsof",
+          "description": "Response includes the lsof command for finding port usage"
+        },
+        {
+          "id": "includes_kill",
+          "description": "Response includes kill or pkill command to terminate the process"
+        },
+        {
+          "id": "includes_port_placeholder",
+          "description": "Response includes a specific port number or placeholder in the command example"
+        },
+        {
+          "id": "actionable_commands",
+          "description": "Response contains copy-pasteable shell commands"
+        }
+      ]
+    }
+  ]
+}

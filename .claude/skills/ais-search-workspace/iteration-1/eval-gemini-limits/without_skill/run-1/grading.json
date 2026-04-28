@@ -1,0 +1,30 @@
+{
+  "expectations": [
+    {
+      "text": "Response contains specific numeric rate limit values",
+      "passed": true,
+      "evidence": "with_skill contains specific RPM/RPD numbers (5 RPM, 100 RPD)"
+    },
+    {
+      "text": "Response specifically addresses Gemini 2.0 Flash",
+      "passed": true,
+      "evidence": "with_skill explicitly mentions 'Gemini 2.0 Flash'"
+    },
+    {
+      "text": "with_skill sources.txt contains at least one URL",
+      "passed": true,
+      "evidence": "with_skill sources.txt has 6 URLs"
+    },
+    {
+      "text": "Response explicitly addresses the free tier",
+      "passed": true,
+      "evidence": "with_skill explicitly addresses 'Free Tier' with quota table"
+    }
+  ],
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 4,
+    "failed": 0,
+    "total": 4
+  }
+}
